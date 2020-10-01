@@ -16,4 +16,11 @@ describe('Pokemon Tests', () => {
     expect(pokemon.checkNameValid('')).toBeFalsy();
   });
 
+  describe('List of Pokemon Tests', () => {
+    it('validate api is up', async () => {
+      const pokemon = new Pokemon();
+      expect(await pokemon.getPokemonsByNameList(["pikachu", "squirtle"])).toBeTruthy();
+    });
+  });
+
 });
