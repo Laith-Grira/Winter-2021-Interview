@@ -1,3 +1,4 @@
+import { response } from 'express';
 import fetch from 'node-fetch';
 
 export interface IPokemon {
@@ -26,8 +27,16 @@ export class Pokemon {
    * @param names list of names
    */
   public async getPokemonsByNameList(names: string[]): Promise<IPokemon[]> {
-    // TO BE IMPLEMENTED
-    return null;
+    var response: any = [];
+    for (var name of names) {
+      try {
+          var res = await this.getPokemonByName(name.toLowerCase().replace('"', ''))
+          response.push(res)
+      } catch (error) {
+        response.push({"error": "Some pokemon names were invalid"})
+      }
+    }
+    return response
   }
 
   /**
